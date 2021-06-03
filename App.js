@@ -8,7 +8,7 @@ import LoginScreen from './Screens/LoginScreen';
 
 const Stack = createStackNavigator();
 const globalScreenOptions = {
-  headerStyle: { backgroundColor: "crimson" },
+  headerStyle: { backgroundColor: "#FFCE00" },
   headerTitleStyle: { color: "white" , alignSelf: "center"},
   headerTintColor: "white"
 }
