@@ -1,13 +1,27 @@
+import 'react-native-gesture-handler';
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import RegisterScreen from "./screens/RegisterScreen"
+
+
+const Stack = createStackNavigator();
+
+const globalScreenOption ={
+  headerStyle: {backgroundColor: "#2c6bed"},
+  hederTitleStyle: {color: "white"},
+  headerTitleColor: "white"
+}
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>FTL Team Chat!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+        <Stack.Navigator screenOptions={globalScreenOption}>
+        <Stack.Screen name="register" component={RegisterScreen} />
+        </Stack.Navigator>
+      </NavigationContainer>
   );
 }
 
