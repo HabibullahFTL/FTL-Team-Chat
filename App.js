@@ -17,9 +17,7 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={globalScreenOptions}>
-        <Stack.Screen options={{
-          title: "Login Screen"
-        }} name="Login" component={LoginScreen} />
+        <Stack.Screen name="Login" component={LoginScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
