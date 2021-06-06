@@ -8,7 +8,11 @@ const LoginScreen = ({navigation}) => {
     const [email, setEmail] = useState(null);
     const [password, setPassword] = useState(null);
     const handleLogin = () => {
-        alert(password)
+        if (email && password) {
+            navigation.replace('Home');
+        }else{
+            alert("You must fillup all the field.")
+        }
     }
     return (
         <ScrollView style={styles.scrollScreen}>

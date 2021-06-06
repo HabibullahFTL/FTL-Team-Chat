@@ -1,18 +1,33 @@
-import React, { useState } from 'react'
+import React, { useLayoutEffect, useState } from 'react'
 import { KeyboardAvoidingView, StyleSheet, View } from 'react-native'
 import { ScrollView } from 'react-native-gesture-handler'
 import { Image, Button, Text, Input } from 'react-native-elements';
+import { auth } from '../firebase';
 
 const RegisterScreen = ({ navigation }) => {
     const [name, setName] = useState(null);
-    const [mobile, setMobile] = useState(null);
     const [email, setEmail] = useState(null);
     const [imgURL, setImgURL] = useState(null);
     const [portfolio, setPortfolio] = useState(null);
     const [password, setPassword] = useState(null);
-    const [confPassword, setConfPassword] = useState(null);
+
+    useLayoutEffect(() => {
+        navigation.setOptions({
+            headerBackTitle: "Back",
+        });
+    }, [navigation])
     const handleRegister = () => {
-        alert(password)
+        if (name && email && password) {
+            alert("Registration success, login now!");
+            navigation.replace('Login')
+            // auth
+            //     .createUserWithEmailAndPassword(email, password)
+            //     .then(authUser => { })
+            //     .catch(error => alert(error.message))
+        }else{
+            alert("Fill the feild & then click on the 'Register' button")
+        }
+
     }
     return (
         <ScrollView style={styles.scrollScreen}>
@@ -36,14 +51,6 @@ const RegisterScreen = ({ navigation }) => {
                 </View>
                 <View style={styles.inputContainer}>
                     <Input
-                        placeholder="Mobile Number"
-                        type="text"
-                        value={mobile}
-                        onChangeText={text => setMobile(text)}
-                    />
-                </View>
-                <View style={styles.inputContainer}>
-                    <Input
                         placeholder="Email Address"
                         type="email"
                         value={email}
@@ -60,7 +67,7 @@ const RegisterScreen = ({ navigation }) => {
                 </View>
                 <View style={styles.inputContainer}>
                     <Input
-                        placeholder="Portfolio URL"
+                        placeholder="Portfolio (Optional)"
                         type="text"
                         value={portfolio}
                         onChangeText={text => setPortfolio(text)}
@@ -75,15 +82,6 @@ const RegisterScreen = ({ navigation }) => {
                         onChangeText={text => setPassword(text)}
                     />
                 </View>
-                <View style={styles.inputContainer}>
-                    <Input
-                        placeholder="Confirm Password"
-                        type="password"
-                        secureTextEntry
-                        value={confPassword}
-                        onChangeText={text => setConfPassword(text)}
-                    />
-                </View>
                 <Button
                     title="Register"
                     buttonStyle={styles.button}
@@ -94,7 +92,7 @@ const RegisterScreen = ({ navigation }) => {
                     type="outline"
                     buttonStyle={styles.buttonOutline}
                     titleStyle={{ color: "#FFA300" }}
-                    onPress={()=>navigation.navigate("Login")}
+                    onPress={() => navigation.navigate("Login")}
                 />
             </KeyboardAvoidingView>
         </ScrollView>
